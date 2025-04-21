@@ -1,0 +1,81 @@
+CREATE TABLE Suppliers (
+  suppliers_id INT NOT NULL,
+  suppliers_name VARCHAR2(100) NOT NULL,
+  phone VARCHAR2(20) NOT NULL,
+  address VARCHAR2(200) NOT NULL,
+  PRIMARY KEY (suppliers_id)
+);
+
+CREATE TABLE Departments (
+  departments_id INT NOT NULL,
+  departments_name VARCHAR2(35) NOT NULL,
+  information VARCHAR2(50) NOT NULL,
+  PRIMARY KEY (departments_id)
+);
+
+CREATE TABLE Customers (
+  customer_id INT NOT NULL,
+  customer_name VARCHAR2(200) NOT NULL,
+  email VARCHAR2(255) NOT NULL,
+  phone VARCHAR2(20) NOT NULL,
+  address VARCHAR2(200) NOT NULL,
+  PRIMARY KEY (customer_id)
+);
+
+CREATE TABLE Items (
+  Items_id INT NOT NULL,
+  Items_name VARCHAR2(200) NOT NULL,
+  status VARCHAR2(20) NOT NULL,
+  price NUMBER(10,2) NOT NULL,
+  stock INT NOT NULL,
+  available_date DATE NOT NULL,
+  departments_id INT NOT NULL,
+  PRIMARY KEY (Items_id),
+  FOREIGN KEY (departments_id) REFERENCES Departments(departments_id)
+);
+
+CREATE TABLE "Order" (
+  order_id INT NOT NULL,
+  order_date DATE NOT NULL,
+  customer_id INT NOT NULL,
+  PRIMARY KEY (order_id),
+  FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+);
+
+CREATE TABLE Feedbacks (
+  feedbacks_id INT NOT NULL,
+  rating NUMBER(10,1) NOT NULL,
+  comment_text VARCHAR2(2000) NOT NULL,
+  feedbacks_date DATE NOT NULL,
+  Items_id INT NOT NULL,
+  customer_id INT NOT NULL,
+  PRIMARY KEY (feedbacks_id),
+  FOREIGN KEY (Items_id) REFERENCES Items(Items_id),
+  FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+);
+
+CREATE TABLE sell (
+  Items_id INT NOT NULL,
+  suppliers_id INT NOT NULL,
+  PRIMARY KEY (Items_id, suppliers_id),
+  FOREIGN KEY (Items_id) REFERENCES Items(Items_id),
+  FOREIGN KEY (suppliers_id) REFERENCES Suppliers(suppliers_id)
+);
+
+CREATE TABLE OrderItems (
+  order_id INT NOT NULL,
+  Items_id INT NOT NULL,
+  quantity INT NOT NULL,
+  PRIMARY KEY (order_id, Items_id),
+  FOREIGN KEY (order_id) REFERENCES "Order"(order_id),
+  FOREIGN KEY (Items_id) REFERENCES Items(Items_id)
+);
+
+CREATE TABLE OrderDetails (
+  order_id INT NOT NULL,
+  delivery_method VARCHAR2(20) NOT NULL,
+  tracking_number VARCHAR2(20) NOT NULL,
+  order_status VARCHAR2(20) NOT NULL,
+  PRIMARY KEY (order_id),
+  FOREIGN KEY (order_id) REFERENCES "Order"(order_id)
+);
