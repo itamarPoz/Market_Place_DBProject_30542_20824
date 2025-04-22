@@ -2,8 +2,8 @@
 # MarketPlaceDBProject – Stage A
 
 ## Authors:
-- Itamar Pozaylov – 305426082  
-- Naftali Bar-Giora – 208243840  
+- Itamar Pozaylov  
+- Naftali Bar-Giora   
 
 ---
 
