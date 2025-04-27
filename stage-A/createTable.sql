@@ -34,7 +34,7 @@ CREATE TABLE Items (
   FOREIGN KEY (departments_id) REFERENCES Departments(departments_id)
 );
 
-CREATE TABLE "Order" (
+CREATE TABLE Orders (
   order_id INT NOT NULL,
   order_date DATE NOT NULL,
   customer_id INT NOT NULL,
