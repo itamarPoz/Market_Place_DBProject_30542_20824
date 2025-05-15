@@ -24,7 +24,6 @@ INSERT INTO Orders VALUES (2, '2024-01-06', 2);
 INSERT INTO Orders VALUES (3, '2024-01-07', 3);
 
 -- Insert into Feedbacks
--- Insert into Feedbacks
 INSERT INTO Feedbacks VALUES (1, 4.5, 'Great laptop!', '2024-01-10', 1, 1);
 INSERT INTO Feedbacks VALUES (2, 3.0, 'Nice but pricey', '2024-01-12', 2, 2);
 INSERT INTO Feedbacks VALUES (3, 5.0, 'Perfect desk', '2024-01-15', 3, 3);

@@ -1,16 +1,16 @@
 CREATE TABLE Suppliers (
-  suppliers_id INT NOT NULL,
-  suppliers_name VARCHAR(100) NOT NULL,
+  supplier_id INT NOT NULL,
+  supplier_name VARCHAR(100) NOT NULL,
   phone VARCHAR(20) NOT NULL,
   address VARCHAR(200) NOT NULL,
-  PRIMARY KEY (suppliers_id)
+  PRIMARY KEY (supplier_id)
 );
 
 CREATE TABLE Departments (
-  departments_id INT NOT NULL,
-  departments_name VARCHAR(35) NOT NULL,
+  department_id INT NOT NULL,
+  department_name VARCHAR(35) NOT NULL,
   information VARCHAR(50) NOT NULL,
-  PRIMARY KEY (departments_id)
+  PRIMARY KEY (department_id)
 );
 
 CREATE TABLE Customers (
@@ -23,15 +23,15 @@ CREATE TABLE Customers (
 );
 
 CREATE TABLE Items (
-  Items_id INT NOT NULL,
-  Items_name VARCHAR(200) NOT NULL,
+  Item_id INT NOT NULL,
+  Item_name VARCHAR(200) NOT NULL,
   status VARCHAR(20) NOT NULL,
   price numeric(10,2) NOT NULL,
   stock INT NOT NULL,
   available_date DATE NOT NULL,
-  departments_id INT NOT NULL,
-  PRIMARY KEY (Items_id),
-  FOREIGN KEY (departments_id) REFERENCES Departments(departments_id)
+  department_id INT NOT NULL,
+  PRIMARY KEY (Item_id),
+  FOREIGN KEY (department_id) REFERENCES Departments(department_id)
 );
 
 CREATE TABLE Orders (
@@ -43,32 +43,32 @@ CREATE TABLE Orders (
 );
 
 CREATE TABLE Feedbacks (
-  feedbacks_id INT NOT NULL,
+  feedback_id INT NOT NULL,
   rating numeric(10,1) NOT NULL,
   comment_text VARCHAR(2000) NOT NULL,
-  feedbacks_date DATE NOT NULL,
-  Items_id INT NOT NULL,
+  feedback_date DATE NOT NULL,
+  Item_id INT NOT NULL,
   customer_id INT NOT NULL,
-  PRIMARY KEY (feedbacks_id),
-  FOREIGN KEY (Items_id) REFERENCES Items(Items_id),
+  PRIMARY KEY (feedback_id),
+  FOREIGN KEY (Item_id) REFERENCES Items(Item_id),
   FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
 
 CREATE TABLE sell (
-  Items_id INT NOT NULL,
-  suppliers_id INT NOT NULL,
-  PRIMARY KEY (Items_id, suppliers_id),
-  FOREIGN KEY (Items_id) REFERENCES Items(Items_id),
-  FOREIGN KEY (suppliers_id) REFERENCES Suppliers(suppliers_id)
+  Item_id INT NOT NULL,
+  supplier_id INT NOT NULL,
+  PRIMARY KEY (Item_id, supplier_id),
+  FOREIGN KEY (Item_id) REFERENCES Items(Item_id),
+  FOREIGN KEY (supplier_id) REFERENCES Suppliers(supplier_id)
 );
 
 CREATE TABLE OrderItems (
   order_id INT NOT NULL,
-  Items_id INT NOT NULL,
+  Item_id INT NOT NULL,
   quantity INT NOT NULL,
-  PRIMARY KEY (order_id, Items_id),
+  PRIMARY KEY (order_id, Item_id),
   FOREIGN KEY (order_id) REFERENCES Orders(order_id),
-  FOREIGN KEY (Items_id) REFERENCES Items(Items_id)
+  FOREIGN KEY (Item_id) REFERENCES Items(Item_id)
 );
 
 CREATE TABLE OrderDetails (
